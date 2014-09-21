@@ -28,6 +28,7 @@ namespace Fourchan
         public string thread_url = "http://a.4cdn.org/{0}/thread/{1}.json";
         public string page_url = "http://a.4cdn.org/{0}/{1}.json";
         public string threads_url = "http://a.4cdn.org/{0}/threads.json";
+        public string post_url = "http://a.4cdn.org/{0}/thread/{1}.json";
 
         /*****
          * JSON Subclasses
@@ -130,6 +131,11 @@ namespace Fourchan
         public string GetPageUrl(string board, string number)
         {
             return String.Format(this.page_url, board, number);
+        }
+
+        public string GetPostUrl(string board, string number)
+        {
+            return String.Format(this.post_url, board, number);
         }
 
         public string GetTheadUrl(string board, string number)
