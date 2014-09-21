@@ -1,9 +1,13 @@
-﻿/*****
+﻿/**********
  * Fourchan.cs
  * By: Andrew Burton
+ * -----
  * Date: 09/10/2014
  * To Do: Everything else besides parsing the boards list JSON
- *****/
+ * *****
+ * Date: 09/21/2014
+ * Working on: setting up classes for all JSON from 4chan
+ **********/
 
 using System;
 using System.IO;
@@ -36,21 +40,21 @@ namespace Fourchan
             [DataMember(Name = "title")]
             public string title { get; set; }
             [DataMember(Name = "ws_board")]
-            public int ws_board { get; set; }
+            public Int64 ws_board { get; set; }
             [DataMember(Name = "per_page")]
-            public int per_page { get; set; }
+            public Int64 per_page { get; set; }
             [DataMember(Name = "pages")]
-            public int pages { get; set; }
+            public Int64 pages { get; set; }
             [DataMember(Name = "max_filesize")]
             public Int64 max_filesize { get; set; }
             [DataMember(Name = "max_webm_filesize")]
             public Int64 max_webm_filesize { get; set; }
             [DataMember(Name = "max_comment_chars")]
-            public int max_comment_chars { get; set; }
+            public Int64 max_comment_chars { get; set; }
             [DataMember(Name = "bump_limit")]
-            public int bump_limit { get; set; }
+            public Int64 bump_limit { get; set; }
             [DataMember(Name = "image_limit")]
-            public int image_limit { get; set; }
+            public Int64 image_limit { get; set; }
             [DataMember(Name = "cooldowns")]
             public Cooldowns cooldowns { get; set; }
         }
@@ -71,20 +75,36 @@ namespace Fourchan
         public class Cooldowns
         {
             [DataMember(Name = "threads")]
-            public int threads { get; set; }
+            public Int64 threads { get; set; }
             [DataMember(Name = "replies")]
-            public int replies { get; set; }
+            public Int64 replies { get; set; }
             [DataMember(Name = "images")]
-            public int images { get; set; }
+            public Int64 images { get; set; }
             [DataMember(Name = "replies_intra")]
-            public int replies_intra { get; set; }
+            public Int64 replies_intra { get; set; }
             [DataMember(Name = "images_intra")]
-            public int images_intra { get; set; }
+            public Int64 images_intra { get; set; }
         }
 
         [DataContract]
         public class Page
         {
+            [DataMember(Name = "page")]
+            public Int64 page { get; set; }
+            [DataMember(Name = "threads")]
+            public Thread[] threads { get; set; }
+        }
+
+        [DataContract]
+        public class Post
+        {
+        }
+
+        [DataContract]
+        public class Posts
+        {
+            [DataMember(Name = "posts")]
+            public Post[] posts { get; set; }
         }
 
         [DataContract]
@@ -95,6 +115,8 @@ namespace Fourchan
         [DataContract]
         public class Threads
         {
+            [DataMember(Name = "threads")]
+            public Thread[] threads { get; set; }
         }
 
         /*****
@@ -131,7 +153,13 @@ namespace Fourchan
             return jsonResponse;
         }
 
-        public Catalog 
+        public Catalog ParseCatalog(string address)
+        {
+        }
+
+        public Thread ParseThread(string address)
+        {
+        }
 
         /*****
          * Fetch the JSON
