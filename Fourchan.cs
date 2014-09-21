@@ -10,6 +10,8 @@
  **********/
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
@@ -111,6 +113,10 @@ namespace Fourchan
         [DataContract]
         public class Thread
         {
+            [DataMember(Name = "no")]
+            public Int64 no { get; set; }
+            [DataMember(Name = "last_modified")]
+            public Int64 last_modified { get; set; }
         }
 
         [DataContract]
@@ -165,6 +171,12 @@ namespace Fourchan
 
         public Thread ParseThread(string address)
         {
+
+        }
+
+        public List<Page> GetPages(string address)
+        {
+
         }
 
         /*****
