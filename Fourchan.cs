@@ -29,13 +29,6 @@ namespace Fourchan
          * JSON Subclasses
          *****/
         [DataContract]
-        public class Boards
-        {
-            [DataMember(Name = "boards")]
-            public Board[] boards { get; set; }
-        }
-
-        [DataContract]
         public class Board
         {
             [DataMember(Name = "board")]
@@ -63,6 +56,18 @@ namespace Fourchan
         }
 
         [DataContract]
+        public class Boards
+        {
+            [DataMember(Name = "boards")]
+            public Board[] boards { get; set; }
+        }
+
+        [DataContract]
+        public class Catalog
+        {
+        }
+
+        [DataContract]
         public class Cooldowns
         {
             [DataMember(Name = "threads")]
@@ -77,11 +82,42 @@ namespace Fourchan
             public int images_intra { get; set; }
         }
 
+        [DataContract]
+        public class Page
+        {
+        }
+
+        [DataContract]
+        public class Thread
+        {
+        }
+
+        [DataContract]
+        public class Threads
+        {
+        }
+
         /*****
          * Create the URL's to GET
          *****/
-        public string GetCatalogUrl(string board) {
+        public string GetCatalogUrl(string board)
+        {
             return String.Format(this.catalog_url, board);
+        }
+
+        public string GetPageUrl(string board, string number)
+        {
+            return String.Format(this.page_url, board, number);
+        }
+
+        public string GetTheadUrl(string board, string number)
+        {
+            return String.Format(this.thread_url, board, number);
+        }
+
+        public string GetTheadsUrl(string board)
+        {
+            return String.Format(this.threads_url, board);
         }
 
         /*****
@@ -94,6 +130,8 @@ namespace Fourchan
             Boards jsonResponse = objResponse as Boards;
             return jsonResponse;
         }
+
+        public Catalog 
 
         /*****
          * Fetch the JSON
