@@ -72,6 +72,10 @@ namespace Fourchan
         [DataContract]
         public class Catalog
         {
+            [DataMember(Name = "page")]
+            public Int64 page { get; set; }
+            [DataMember(Name = "threads")]
+            public Thread[] threads { get; set; }
         }
 
         [DataContract]
@@ -102,79 +106,79 @@ namespace Fourchan
         public class Post
         {
             [DataMember(Name = "no")]
-            public Int64 no;
+            public Int64 no { get; set; }
             [DataMember(Name = "resto")]
-            public Int64 resto;
+            public Int64 resto { get; set; }
             [DataMember(Name = "sticky")]
-            public Int64 sticky;
+            public Int64 sticky { get; set; }
             [DataMember(Name = "closed")]
-            public Int64 closed;
+            public Int64 closed { get; set; }
             [DataMember(Name = "archived")]
-            public Int64 archived;
+            public Int64 archived { get; set; }
             [DataMember(Name = "now")]
-            public string now;
+            public string now { get; set; }
             [DataMember(Name = "time")]
-            public Int64 time;
+            public Int64 time { get; set; }
             [DataMember(Name = "name")]
-            public string name;
+            public string name { get; set; }
             [DataMember(Name = "trip")]
-            public string trip;
+            public string trip { get; set; }
             [DataMember(Name = "id")]
-            public string id;
+            public string id { get; set; }
             [DataMember(Name = "capcode")]
-            public string capcode;
+            public string capcode { get; set; }
             [DataMember(Name = "country")]
-            public string country;
+            public string country { get; set; }
             [DataMember(Name = "country_name")]
-            public string country_name;
+            public string country_name { get; set; }
             [DataMember(Name = "sub")]
-            public string sub;
+            public string sub { get; set; }
             [DataMember(Name = "com")]
-            public string com;
+            public string com { get; set; }
             [DataMember(Name = "tim")]
-            public Int64 tim;
+            public Int64 tim { get; set; }
             [DataMember(Name = "filename")]
-            public string filename;
+            public string filename { get; set; }
             [DataMember(Name = "ext")]
-            public string ext;
+            public string ext { get; set; }
             [DataMember(Name = "fsize")]
-            public Int64 fsize;
+            public Int64 fsize { get; set; }
             [DataMember(Name = "md5")]
-            public string md5;
+            public string md5 { get; set; }
             [DataMember(Name = "w")]
-            public Int64 w;
+            public Int64 w { get; set; }
             [DataMember(Name = "h")]
-            public Int64 h;
+            public Int64 h { get; set; }
             [DataMember(Name = "tn_w")]
-            public Int64 tn_w;
+            public Int64 tn_w { get; set; }
             [DataMember(Name = "tn_h")]
-            public Int64 tn_h;
+            public Int64 tn_h { get; set; }
             [DataMember(Name = "filedeleted")]
-            public Int64 filedeleted;
+            public Int64 filedeleted { get; set; }
             [DataMember(Name = "spoiler")]
-            public Int64 spoiler;
+            public Int64 spoiler { get; set; }
             [DataMember(Name = "custom_spoiler")]
-            public Int64 custom_spoiler;
+            public Int64 custom_spoiler { get; set; }
             [DataMember(Name = "omitted_posts")]
-            public Int64 omitted_posts;
+            public Int64 omitted_posts { get; set; }
             [DataMember(Name = "omitted_images")]
-            public Int64 omitted_images;
+            public Int64 omitted_images { get; set; }
             [DataMember(Name = "replies")]
-            public Int64 replies;
+            public Int64 replies { get; set; }
             [DataMember(Name = "images")]
-            public Int64 images;
+            public Int64 images { get; set; }
             [DataMember(Name = "bumplimit")]
-            public Int64 bumplimit;
+            public Int64 bumplimit { get; set; }
             [DataMember(Name = "imagelimit")]
-            public Int64 imagelimit;
+            public Int64 imagelimit { get; set; }
             [DataMember(Name = "capcode_replies")]
-            public Hashtable capcode_replies;
+            public Hashtable capcode_replies { get; set; }
             [DataMember(Name = "last_modified")]
-            public Int64 last_modified;
+            public Int64 last_modified { get; set; }
             [DataMember(Name = "tag")]
-            public string tag;
+            public string tag { get; set; }
             [DataMember(Name = "semantic_url")]
-            public string semantic_url;
+            public string semantic_url { get; set; }
         }
 
         [DataContract]
@@ -188,9 +192,51 @@ namespace Fourchan
         public class Thread
         {
             [DataMember(Name = "no")]
-            public Int64 no { get; set; }
-            [DataMember(Name = "last_modified")]
-            public Int64 last_modified { get; set; }
+            public string no { get; set; }
+            [DataMember(Name = "now")]
+            public string now { get; set; }
+            [DataMember(Name = "name")]
+            public string name { get; set; }
+            [DataMember(Name = "com")]
+            public string com { get; set; }
+            [DataMember(Name = "filename")]
+            public string filename { get; set; }
+            [DataMember(Name = "ext")]
+            public string ext { get; set; }
+            [DataMember(Name = "w")]
+            public Int64 w { get; set; }
+            [DataMember(Name = "h")]
+            public Int64 h { get; set; }
+            [DataMember(Name = "tn_w")]
+            public Int64 tn_w { get; set; }
+            [DataMember(Name = "tn_h")]
+            public Int64 tn_h { get; set; }
+            [DataMember(Name = "tim")]
+            public Int64 tim { get; set; }
+            [DataMember(Name = "time")]
+            public Int64 time { get; set; }
+            [DataMember(Name = "md5")]
+            public string md5 { get; set; }
+            [DataMember(Name = "fsize")]
+            public Int64 fsize { get; set; }
+            [DataMember(Name = "restno")]
+            public Int64 resto { get; set; }
+            [DataMember(Name = "bumplimit")]
+            public Int64 bumplimit { get; set; }
+            [DataMember(Name = "imagelimit")]
+            public Int64 imagelimit { get; set; }
+            [DataMember(Name = "semantic_url")]
+            public string semantic_url { get; set; }
+            [DataMember(Name = "replies")]
+            public Int64 replies { get; set; }
+            [DataMember(Name = "images")]
+            public Int64 images { get; set; }
+            [DataMember(Name = "omitted_posts")]
+            public Int64 omitted_posts { get; set; }
+            [DataMember(Name = "omitted_images")]
+            public Int64 omitted_images { get; set; }
+            [DataMember(Name = "last_replies")]
+            public Post[] last_replies { get; set; }
         }
 
         [DataContract]
