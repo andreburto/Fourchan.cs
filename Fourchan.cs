@@ -7,6 +7,9 @@
  * *****
  * Date: 09/21/2014
  * Working on: setting up classes for all JSON from 4chan
+ * *****
+ * Date: 10/11/2014
+ * Working on: Trying to wrap up the parser.
  **********/
 
 using System;
@@ -75,7 +78,7 @@ namespace Fourchan
             [DataMember(Name = "page")]
             public Int64 page { get; set; }
             [DataMember(Name = "threads")]
-            public Thread[] threads { get; set; }
+            public Post[] threads { get; set; }
         }
 
         [DataContract]
@@ -99,7 +102,7 @@ namespace Fourchan
             [DataMember(Name = "page")]
             public Int64 page { get; set; }
             [DataMember(Name = "threads")]
-            public Thread[] threads { get; set; }
+            public Post[] threads { get; set; }
         }
 
         [DataContract]
@@ -189,61 +192,10 @@ namespace Fourchan
         }
 
         [DataContract]
-        public class Thread
-        {
-            [DataMember(Name = "no")]
-            public string no { get; set; }
-            [DataMember(Name = "now")]
-            public string now { get; set; }
-            [DataMember(Name = "name")]
-            public string name { get; set; }
-            [DataMember(Name = "com")]
-            public string com { get; set; }
-            [DataMember(Name = "filename")]
-            public string filename { get; set; }
-            [DataMember(Name = "ext")]
-            public string ext { get; set; }
-            [DataMember(Name = "w")]
-            public Int64 w { get; set; }
-            [DataMember(Name = "h")]
-            public Int64 h { get; set; }
-            [DataMember(Name = "tn_w")]
-            public Int64 tn_w { get; set; }
-            [DataMember(Name = "tn_h")]
-            public Int64 tn_h { get; set; }
-            [DataMember(Name = "tim")]
-            public Int64 tim { get; set; }
-            [DataMember(Name = "time")]
-            public Int64 time { get; set; }
-            [DataMember(Name = "md5")]
-            public string md5 { get; set; }
-            [DataMember(Name = "fsize")]
-            public Int64 fsize { get; set; }
-            [DataMember(Name = "restno")]
-            public Int64 resto { get; set; }
-            [DataMember(Name = "bumplimit")]
-            public Int64 bumplimit { get; set; }
-            [DataMember(Name = "imagelimit")]
-            public Int64 imagelimit { get; set; }
-            [DataMember(Name = "semantic_url")]
-            public string semantic_url { get; set; }
-            [DataMember(Name = "replies")]
-            public Int64 replies { get; set; }
-            [DataMember(Name = "images")]
-            public Int64 images { get; set; }
-            [DataMember(Name = "omitted_posts")]
-            public Int64 omitted_posts { get; set; }
-            [DataMember(Name = "omitted_images")]
-            public Int64 omitted_images { get; set; }
-            [DataMember(Name = "last_replies")]
-            public Post[] last_replies { get; set; }
-        }
-
-        [DataContract]
         public class Threads
         {
             [DataMember(Name = "threads")]
-            public Thread[] threads { get; set; }
+            public Posts[] threads { get; set; }
         }
 
         /*****
@@ -257,6 +209,11 @@ namespace Fourchan
         public string GetPageUrl(string board, string number)
         {
             return String.Format(this.page_url, board, number);
+        }
+
+        public string GetPageUrl(string board)
+        {
+            return String.Format(this.page_url, board, 1);
         }
 
         public string GetPostUrl(string board, string number)
@@ -287,16 +244,27 @@ namespace Fourchan
 
         public Catalog ParseCatalog(string address)
         {
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Catalog));
+            object objResponse = jsonSerializer.ReadObject(this.GetJson(address));
+            Catalog jsonResponse = objResponse as Catalog;
+            return jsonResponse;
         }
 
-        public Thread ParseThread(string address)
+        public Posts ParseThread(string address)
         {
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Posts));
+            object objResponse = jsonSerializer.ReadObject(this.GetJson(address));
+            Posts jsonResponse = objResponse as Posts;
+            return jsonResponse;
 
         }
 
-        public List<Page> GetPages(string address)
+        public Threads GetPages(string address)
         {
-
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Threads));
+            object objResponse = jsonSerializer.ReadObject(this.GetJson(address));
+            Threads jsonResponse = objResponse as Threads;
+            return jsonResponse;
         }
 
         /*****
