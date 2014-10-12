@@ -242,11 +242,11 @@ namespace Fourchan
             return jsonResponse;
         }
 
-        public Catalog ParseCatalog(string address)
+        public List<Catalog> ParseCatalog(string address)
         {
-            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Catalog));
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<Catalog>));
             object objResponse = jsonSerializer.ReadObject(this.GetJson(address));
-            Catalog jsonResponse = objResponse as Catalog;
+            List<Catalog> jsonResponse = objResponse as List<Catalog>;
             return jsonResponse;
         }
 
