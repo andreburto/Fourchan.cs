@@ -277,6 +277,7 @@ namespace Fourchan
          *****/
         public Stream GetJson(string address) {
             HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
+            request.UserAgent = "Fourchan.cs a Csharp library";
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
             
             if (response.StatusCode != HttpStatusCode.OK)
