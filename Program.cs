@@ -24,21 +24,14 @@ namespace ConsoleApplication1
             Console.WriteLine("Url A: {0}", urla);
             Console.WriteLine("Pages: {0}", c.Count);
 
-            string urlb = f.GetPageUrl("co", c[0].page.ToString());
-            Console.WriteLine("Url B: {0}", urlb);
-
-            Thread.Sleep(1500);
-            Fourchan.Fourchan.Threads page = f.ParsePage(urlb);
-
-            foreach (Fourchan.Fourchan.Posts ps in page.threads)
+            foreach (Fourchan.Fourchan.Catalog cat in c)
             {
-                Console.WriteLine("Thread:");
-                foreach (Fourchan.Fourchan.Post p in ps.posts)
+                Console.WriteLine("Page: {0}", cat.page);
+                foreach (Fourchan.Fourchan.Post p in cat.threads)
                 {
-                    Console.WriteLine(": {0} - {1}", p.ToString(), p.no);
+                    Console.WriteLine("{0} by {1}", p.no, p.name);
                 }
             }
-
 
             Console.ReadLine();
         }
