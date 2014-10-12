@@ -102,7 +102,7 @@ namespace Fourchan
             [DataMember(Name = "page")]
             public Int64 page { get; set; }
             [DataMember(Name = "threads")]
-            public Post[] threads { get; set; }
+            public Posts threads { get; set; }
         }
 
         [DataContract]
@@ -216,6 +216,11 @@ namespace Fourchan
             return String.Format(this.page_url, board, 1);
         }
 
+        public string GetPostUrl(string board, Int64 number)
+        {
+            return String.Format(this.post_url, board, number.ToString());
+        }
+
         public string GetPostUrl(string board, string number)
         {
             return String.Format(this.post_url, board, number);
@@ -259,7 +264,7 @@ namespace Fourchan
 
         }
 
-        public Threads GetPages(string address)
+        public Threads ParsePage(string address)
         {
             DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Threads));
             object objResponse = jsonSerializer.ReadObject(this.GetJson(address));
